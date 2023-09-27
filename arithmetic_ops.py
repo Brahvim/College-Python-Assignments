@@ -1,25 +1,25 @@
-import numbers
+from numbers import Number
 
+# region Operators.
+# Finally! A place for me to use lambdas:
+operators = {
+    "+": lambda a, b: a + b,
+    "-": lambda a, b: a - b,
+    "*": lambda a, b: a * b,
+    "/": lambda a, b: a / b,
+    "%": lambda a, b: a % b,
+    "^": lambda a, b: a**b,
+    "//": lambda a, b: a // b,
+}  # ...An entire LANGUAGE to do that!
 
-def is_number(p_param):
-    return isinstance(p_param, Number)
-
-
-# def is_int(p_param):
-#     return isinstance(p_param, int)
-
-
-# def is_float(p_param):
-#     return isinstance(p_param, float)
-
-
-# def is_complex(p_param):
-#     return isinstance(p_param, complex)
+# We need dis!!!:
+operators["**"] = operators["^"]
+# endregion
 
 
 print("Welcome to the arithmetic operations program!")
 print("This specific implementation is an interactive calculator.")
-print("Try entering expressions like `1234 + 5678`.")
+print("Try entering expressions like `1234 + 5678`! (With the spaces!):")
 
 while True:
     print("> ", end="")
@@ -32,22 +32,26 @@ while True:
         print("That's not valid input!")
         continue
 
-    if not (is_number(tokens[0]) or is_number(tokens[2])):
+    a = tokens[0]
+    b = tokens[2]
+
+    if not (a.isdigit() or b.isdigit()):
         print("Sorry - numbers only!")
         continue
 
-    a = tokens[0]
-    b = tokens[2]
-    user_op = tokens[1]
-    result = "Oops! Looks like we don't calculate that!"
+    a = float(a)
+    b = float(b)
 
-    if user_op == "+":
-        result = a + b
-    elif user_op == "-":
-        result = a - b
-    elif user_op == "*":
-        result = a * b
-    else:
+    result = "Oops! Looks like we can't calculate that!"
+
+    try:
+        op = operators[tokens[1]]
+        result = op(a, b)
+        rounded = int(result)
+
+        if result == rounded:
+            result = rounded
+    except KeyError:
         pass
 
     print(result)
