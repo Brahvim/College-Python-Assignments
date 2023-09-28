@@ -26,7 +26,7 @@ while True:
     print("> ", end="")
 
     try:
-        a, op_iden, b = input().split(" ")
+        a, op_name, b = input().split(" ")
     except (ValueError, IndexError):
         # `except ValueError | IndexError:` does work, but the former is better.
         print("That's not valid input!")
@@ -41,7 +41,7 @@ while True:
     result = "Oops, I can't calculate that!"
 
     try:
-        result = operators[op_iden](a, b)
+        result = operators[op_name](a, b)
         rounded = int(result)
 
         if result == rounded:
