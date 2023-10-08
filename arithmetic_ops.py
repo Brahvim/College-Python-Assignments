@@ -23,7 +23,7 @@ print("Try entering expressions like `1234 + 5678` (with the spaces)!:")
 # TODO: Add loops to allow users to enter expressions without spaces!
 
 while True:
-    print("> ", end="")
+    print(">", end=" ")
 
     try:
         a, op_name, b = input().split(" ")
