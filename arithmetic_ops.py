@@ -1,52 +1,21 @@
-from numbers import Number
+# Python has the five fundamental arithmetic operators every other language does:
 
-# region Operations.
-# Finally, a place for me to use lambdas (and maps)!:
-operators = {
-    "+": lambda a, b: a + b,
-    "-": lambda a, b: a - b,
-    "*": lambda a, b: a * b,
-    "/": lambda a, b: a / b,
-    "%": lambda a, b: a % b,
-    "^": lambda a, b: a**b,
-    "//": lambda a, b: a // b,
-}  # ...not just a *place*, but an entire LANGUAGE to do that!
+print(5 + 5)
+print(2 - 4)
+print(6 * 7)
+print(2 / 10)
+print(5 % 10)
 
-# This allows for the use of different symbols for the 'power' operation.
-operators["**"] = operators["^"]
-# endregion
+# There are also two additional operators for "floor division" and exponentiation:
+print(2**5)
+print(5 // 2.5)
 
-print("Welcome to the interactive calculator!")
-print("Send in a `SIGKILL` using `^C` to exit.")
-print("Try entering expressions like `1234 + 5678` (with the spaces)!:")
+# Python supports shorthands for all of them:
+a = 5
+a += 2
+a -= 1
+a *= 10
+a /= 10
+a **= 10
 
-# TODO: Add loops to allow users to enter expressions without spaces!
-
-while True:
-    print(">", end=" ")
-
-    try:
-        a, op_name, b = input().split(" ")
-    except (ValueError, IndexError):
-        # `except ValueError | IndexError:` does work, but the former is better.
-        print("That's not valid input!")
-        continue
-
-    try:
-        a, b = float(a), float(b)
-    except ValueError:
-        print("Sorry - numbers only!")
-        continue
-
-    result = "Oops, I can't calculate that!"
-
-    try:
-        result = operators[op_name](a, b)
-        rounded = int(result)
-
-        if result == rounded:
-            result = rounded
-    except KeyError:
-        pass
-
-    print(result)
+# Python supports bitwise operators:
